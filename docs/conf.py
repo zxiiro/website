@@ -20,8 +20,8 @@ html_static_path = ['_static']
 html_theme = 'bootstrap'
 html_theme_path = sphinx_bootstrap_theme.get_html_theme_path()
 html_theme_options = {
-    # 'analytics_id': 'UA-46385504-1',
-    # 'canonical_url': 'http://www.zxiiro.ca/',
+    'analytics_id': 'UA-46385504-1',
+    'canonical_url': 'https://www.zxiiro.ca/',
 
     'bootswatch_theme': "readable",
     'navbar_class': "navbar navbar-inverse",
