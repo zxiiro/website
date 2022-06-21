@@ -19,7 +19,7 @@ city.
 You can reach him via the following locations:
 
 * Email: thanh.ha@alumni.carleton.ca
-* LinkedIn: https://www.linkedin.com/in/thanhha
+* LinkedIn: https://www.linkedin.com/in/zxiiro
 * Twitter: `@zxiiro <https://twitter.com/zxiiro>`_
 
 Portfolio
