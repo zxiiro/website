@@ -1,0 +1,41 @@
+---
+import SectionHeading from "./SectionHeading.astro";
+import SocialIcons from "./SocialIcons.astro";
+import { profile } from "../data/profile";
+---
+
+<section id="contact" class="border-t border-[color:var(--color-border)]">
+  <div class="mx-auto max-w-3xl px-6 py-20">
+    <SectionHeading
+      eyebrow="Contact"
+      title="Let's talk"
+      description="Best reached over email or LinkedIn."
+    />
+
+    <div class="rounded-2xl border border-[color:var(--color-border)] bg-[color:var(--color-bg-elevated)] p-6 sm:p-8">
+      <p class="text-[color:var(--color-fg-muted)]">
+        Drop a message any time.
+      </p>
+      <a
+        href={`mailto:${profile.email}`}
+        class="mt-2 inline-block font-mono text-base text-[color:var(--color-fg)] underline decoration-[color:var(--color-accent)] decoration-2 underline-offset-4 hover:text-[color:var(--color-accent)] transition"
+      >
+        {profile.email}
+      </a>
+
+      <div class="mt-6">
+        <SocialIcons />
+      </div>
+    </div>
+
+    <p class="mt-8 text-xs text-[color:var(--color-fg-subtle)]">
+      {profile.education}
+    </p>
+  </div>
+</section>
+
+<footer class="border-t border-[color:var(--color-border)]">
+  <div class="mx-auto max-w-3xl px-6 py-8 text-center font-mono text-xs text-[color:var(--color-fg-subtle)]">
+    © {new Date().getFullYear()} {profile.name} · built with Astro
+  </div>
+</footer>
