@@ -2,10 +2,11 @@
 import ThemeToggle from "./ThemeToggle.astro";
 import { profile } from "../data/profile";
 
-const links = [
+const links: { href: string; label: string; emphasized?: boolean }[] = [
   { href: "#experience", label: "Experience" },
   { href: "#skills", label: "Skills" },
   { href: "#contact", label: "Contact" },
+  { href: "/resume", label: "Resume", emphasized: true },
 ];
 ---
 
@@ -20,7 +21,11 @@ const links = [
           <li>
             <a
               href={l.href}
-              class="rounded-md px-3 py-1.5 text-sm text-[color:var(--color-fg-muted)] hover:text-[color:var(--color-fg)] hover:bg-[color:var(--color-bg-elevated)] transition"
+              class={
+                l.emphasized
+                  ? "ml-1 rounded-full border border-[color:var(--color-accent)] px-3 py-1 text-sm text-[color:var(--color-accent)] hover:bg-[color:var(--color-accent)] hover:text-[color:var(--color-accent-fg)] transition"
+                  : "rounded-md px-3 py-1.5 text-sm text-[color:var(--color-fg-muted)] hover:text-[color:var(--color-fg)] hover:bg-[color:var(--color-bg-elevated)] transition"
+              }
             >
               {l.label}
             </a>

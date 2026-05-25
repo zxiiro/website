@@ -4,7 +4,12 @@ export const profile = {
   title: "DevOps Engineer",
   location: "Ottawa, Canada",
   bio: "DevOps Engineer focused on build automation, release engineering, and the tooling that keeps continuous integration systems humming. Active in open source since 2008 — notably OpenDaylight, Jenkins Job Builder, and Linux Foundation Releng.",
-  education: "B.IT Network Technology — Carleton University & Algonquin College, 2009",
+  education: {
+    degree: "B.IT — Network Technology",
+    school: "Carleton University & Algonquin College",
+    year: "2009",
+    note: "With distinction",
+  },
   interests: "Hiking in Gatineau park, rollerblading the city.",
   email: "thanh.ha@alumni.carleton.ca",
   links: {

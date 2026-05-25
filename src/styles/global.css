@@ -8,23 +8,23 @@
   --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
 
   --color-bg: oklch(0.99 0 0);
-  --color-bg-elevated: oklch(0.97 0 0);
+  --color-bg-elevated: oklch(0.975 0 0);
   --color-fg: oklch(0.18 0.01 260);
-  --color-fg-muted: oklch(0.48 0.01 260);
-  --color-fg-subtle: oklch(0.62 0.01 260);
-  --color-border: oklch(0.92 0.005 260);
-  --color-accent: oklch(0.58 0.18 264);
+  --color-fg-muted: oklch(0.42 0.012 260);
+  --color-fg-subtle: oklch(0.58 0.012 260);
+  --color-border: oklch(0.91 0.005 260);
+  --color-accent: oklch(0.55 0.18 264);
   --color-accent-fg: oklch(0.99 0 0);
 }
 
 .dark {
   --color-bg: oklch(0.16 0.012 260);
-  --color-bg-elevated: oklch(0.21 0.014 260);
+  --color-bg-elevated: oklch(0.20 0.014 260);
   --color-fg: oklch(0.96 0.005 260);
   --color-fg-muted: oklch(0.72 0.012 260);
   --color-fg-subtle: oklch(0.55 0.012 260);
   --color-border: oklch(0.28 0.012 260);
-  --color-accent: oklch(0.72 0.16 264);
+  --color-accent: oklch(0.74 0.16 264);
   --color-accent-fg: oklch(0.14 0.012 260);
 }
 
@@ -43,4 +43,116 @@ body {
 ::selection {
   background-color: var(--color-accent);
   color: var(--color-accent-fg);
+}
+
+/* Resume section label — uppercase rule-line heading */
+.resume-section-label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+.resume-section-label::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background-color: var(--color-border);
+}
+.resume-section-label-lg {
+  font-size: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Print stylesheet — site doubles as a PDF resume via Ctrl+P.
+   Preserves the on-screen two-column layout at letter size. */
+@media print {
+  :root,
+  .dark {
+    --color-bg: #ffffff;
+    --color-bg-elevated: #f4f4f6;
+    --color-fg: #111111;
+    --color-fg-muted: #333333;
+    --color-fg-subtle: #666666;
+    --color-border: #d4d4d8;
+    --color-accent: #2b3eaa;
+    --color-accent-fg: #ffffff;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  html,
+  body {
+    background: #ffffff !important;
+    color: #111111 !important;
+    font-size: 9.5pt;
+    line-height: 1.4;
+  }
+
+  * {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  @page {
+    size: letter;
+    margin: 0.4in;
+  }
+
+  /* Force the two-column grid regardless of print viewport width */
+  .resume-layout {
+    display: grid !important;
+    grid-template-columns: 2.4in 1fr !important;
+    gap: 0 !important;
+    min-height: 0 !important;
+  }
+
+  .resume-sidebar {
+    position: static !important;
+    height: auto !important;
+    overflow: visible !important;
+    border-right: 1px solid var(--color-border) !important;
+    border-bottom: none !important;
+    background: var(--color-bg-elevated) !important;
+    padding: 0 !important;
+  }
+  .resume-sidebar > div {
+    max-width: none !important;
+    padding: 0.15in 0.2in 0.15in 0 !important;
+    margin: 0 0.2in 0 0 !important;
+  }
+
+  .resume-main > div {
+    max-width: none !important;
+    padding: 0 0 0 0.25in !important;
+    margin: 0 !important;
+  }
+
+  /* Tighten headings in print */
+  .resume-sidebar h1 {
+    font-size: 14pt !important;
+  }
+  .resume-section-label,
+  .resume-section-label-lg {
+    margin-bottom: 0.4rem !important;
+    font-size: 8pt !important;
+  }
+
+  /* Keep role entries from breaking mid-block */
+  ol > li {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  a {
+    color: inherit !important;
+    text-decoration: none !important;
+  }
 }
