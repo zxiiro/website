@@ -69,6 +69,36 @@ body {
   margin-bottom: 1.5rem;
 }
 
+/* Print exclusion controls — toggle individual roles on/off for the printed resume */
+.role-toggle {
+  display: none;
+}
+.role-toggle-icon-restore {
+  display: none;
+}
+[data-edit-mode="true"] .role-toggle {
+  display: inline-flex;
+}
+.role-excluded-flag {
+  display: none;
+}
+.role-item[data-print-excluded="true"] {
+  opacity: 0.4;
+}
+.role-item[data-print-excluded="true"] .role-excluded-flag {
+  display: inline;
+}
+.role-item[data-print-excluded="true"] .role-toggle {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+.role-item[data-print-excluded="true"] .role-toggle-icon-exclude {
+  display: none;
+}
+.role-item[data-print-excluded="true"] .role-toggle-icon-restore {
+  display: inline-block;
+}
+
 /* Print stylesheet — site doubles as a PDF resume via Ctrl+P.
    Preserves the on-screen two-column layout at letter size. */
 @media print {
@@ -149,6 +179,15 @@ body {
   ol > li {
     break-inside: avoid;
     page-break-inside: avoid;
+  }
+
+  /* Hide user-excluded roles from the printed output */
+  .role-item[data-print-excluded="true"] {
+    display: none !important;
+  }
+  .role-toggle,
+  .role-excluded-flag {
+    display: none !important;
   }
 
   a {

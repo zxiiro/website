@@ -1,32 +1,56 @@
 ---
 import { experience } from "../data/experience";
+
+const slug = (s: string) =>
+  s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
 ---
 
 <section id="experience">
   <h2 class="resume-section-label resume-section-label-lg">Experience</h2>
 
   <ol class="space-y-8 sm:space-y-10">
-    {experience.map((role) => (
-      <li class="break-inside-avoid">
-        <header class="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-0.5">
-          <h3 class="text-base font-medium text-[color:var(--color-fg)]">
-            {role.title}
-            <span class="text-[color:var(--color-fg-subtle)]"> · </span>
-            <span class="text-[color:var(--color-accent)]">{role.company}</span>
-          </h3>
-          <p class="font-mono text-xs text-[color:var(--color-fg-subtle)]">
-            {role.start} — {role.end}
-          </p>
-        </header>
+    {experience.map((role) => {
+      const id = `${slug(role.company)}-${slug(role.title)}-${slug(role.start)}`;
+      return (
+        <li class="role-item break-inside-avoid" data-role-id={id}>
+          <header class="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-0.5">
+            <h3 class="text-base font-medium text-[color:var(--color-fg)]">
+              {role.title}
+              <span class="text-[color:var(--color-fg-subtle)]"> · </span>
+              <span class="text-[color:var(--color-accent)]">{role.company}</span>
+            </h3>
+            <div class="flex items-baseline gap-2">
+              <span class="role-excluded-flag font-mono text-[10px] uppercase tracking-wider text-[color:var(--color-fg-subtle)]">
+                Hidden from print
+              </span>
+              <p class="font-mono text-xs text-[color:var(--color-fg-subtle)]">
+                {role.start} — {role.end}
+              </p>
+              <button
+                type="button"
+                class="role-toggle h-5 w-5 shrink-0 items-center justify-center rounded-full border border-[color:var(--color-border)] text-[color:var(--color-fg-subtle)] transition hover:border-[color:var(--color-accent)] hover:text-[color:var(--color-accent)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-accent)]"
+                aria-label="Exclude from printed resume"
+              >
+                <svg class="role-toggle-icon-exclude h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+                  <path d="M18 6 6 18M6 6l12 12" />
+                </svg>
+                <svg class="role-toggle-icon-restore h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M3 12a9 9 0 1 0 3-6.7L3 8" />
+                  <path d="M3 3v5h5" />
+                </svg>
+              </button>
+            </div>
+          </header>
 
-        <ul class="mt-2.5 space-y-1 text-sm leading-relaxed text-[color:var(--color-fg-muted)]">
-          {role.bullets.map((b) => (
-            <li class="relative pl-4 before:absolute before:left-0 before:top-2 before:h-1 before:w-1 before:rounded-full before:bg-[color:var(--color-fg-subtle)]">
-              {b}
-            </li>
-          ))}
-        </ul>
-      </li>
-    ))}
+          <ul class="mt-2.5 space-y-1 text-sm leading-relaxed text-[color:var(--color-fg-muted)]">
+            {role.bullets.map((b) => (
+              <li class="relative pl-4 before:absolute before:left-0 before:top-2 before:h-1 before:w-1 before:rounded-full before:bg-[color:var(--color-fg-subtle)]">
+                {b}
+              </li>
+            ))}
+          </ul>
+        </li>
+      );
+    })}
   </ol>
 </section>
