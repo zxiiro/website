@@ -1,9 +1,9 @@
 export const profile = {
   name: "Thanh Ha",
   handle: "zxiiro",
-  title: "DevOps Engineer",
+  title: "Staff IT Engineer",
   location: "Ottawa, Canada",
-  bio: "DevOps Engineer focused on build automation, release engineering, and the tooling that keeps continuous integration systems humming. Active in open source since 2008 — notably OpenDaylight, Jenkins Job Builder, and Linux Foundation Releng.",
+  bio: "Staff IT Engineer at The Linux Foundation, building cloud infrastructure and CI/CD pipelines that power major open-source projects like PyTorch. Active in open source since 2008 — past contributions include OpenDaylight, Jenkins Job Builder, and Linux Foundation Releng tooling.",
   education: {
     degree: "B.IT — Network Technology",
     school: "Carleton University & Algonquin College",
