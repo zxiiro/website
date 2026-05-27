@@ -24,7 +24,15 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
     <meta name="author" content={profile.name} />
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+
+    <!-- Adaptive favicon (single file, auto light/dark via prefers-color-scheme) -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- Explicit fallbacks for browsers that don't honor adaptive SVG -->
+    <link rel="icon" type="image/svg+xml" href="/favicon-light.svg" media="(prefers-color-scheme: light)" />
+    <link rel="icon" type="image/svg+xml" href="/favicon-dark.svg" media="(prefers-color-scheme: dark)" />
+
+    <meta name="theme-color" content="#f7f1e6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#14100c" media="(prefers-color-scheme: dark)" />
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
